@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -67,6 +67,20 @@ const form = ref({
   email: '',
   password: '',
   confirmPassword: ''
+})
+
+// Vérifier s'il existe déjà un administrateur
+onMounted(async () => {
+  try {
+    const response = await fetch('/api/admin/check')
+    const { hasAdmin } = await response.json()
+    
+    if (hasAdmin) {
+      router.push('/admin/login')
+    }
+  } catch (error) {
+    console.error('Erreur lors de la vérification:', error)
+  }
 })
 
 const createAdmin = async () => {

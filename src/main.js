@@ -8,6 +8,8 @@ import IncidentDetail from './components/IncidentDetail.vue'
 import MaintenanceDetail from './components/MaintenanceDetail.vue'
 import IncidentsPage from './components/IncidentsPage.vue'
 import MaintenancePage from './components/MaintenancePage.vue'
+import AdminAuth from './components/AdminAuth.vue'
+import AdminDashboard from './components/AdminDashboard.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -42,6 +44,14 @@ const router = createRouter({
           name: 'maintenance-detail'
         }
       ]
+    },
+    {
+      path: '/admin',
+      component: AdminAuth
+    },
+    {
+      path: '/admin/dashboard',
+      component: AdminDashboard
     }
   ]
 })
